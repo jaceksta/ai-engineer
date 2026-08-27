@@ -1,0 +1,33 @@
+# --- Data: keep the scripts, ignore everything they download ---
+data/*
+!data/*.py
+!data/.gitkeep
+
+# --- Secrets / local config ---
+.env
+.env.*
+!.env.example
+
+# --- Experiment tracking & model artifacts ---
+mlruns/
+mlartifacts/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/
