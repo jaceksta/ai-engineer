@@ -3,7 +3,7 @@
 
 setup:  ## Create the environment and install pre-commit hooks
 	uv sync
-	uv run pre-commit install
+	./scripts/install_hooks.sh
 	@echo "Environment ready. See SETUP.md for the per-machine git identity + SSH steps."
 
 test:  ## Run the test suite (expect NotImplementedError until you implement the exercises)
