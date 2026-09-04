@@ -83,11 +83,24 @@ it won't resolve on the CPU-only laptop.
 ## 4. Pre-commit hooks
 
 ```bash
-uv run pre-commit install
+./scripts/install_hooks.sh     # `make setup` already runs this
 ```
 
 This installs the git hook that runs `nbstripout`, `ruff`, and the basic
 file-hygiene checks on every commit.
+
+### If you see "Cowardly refusing to install hooks with `core.hooksPath` set"
+
+Plain `pre-commit install` bails out when git's `core.hooksPath` points
+somewhere else — a corporate secret scanner such as ggshield sets this
+globally. `scripts/install_hooks.sh` handles it: it tries `pre-commit install`
+first, and on that specific failure writes `.git/hooks/pre-commit` directly
+instead. Scanner wrappers normally call the repo's own hook too, so both end up
+running. **Do not** unset `core.hooksPath` globally — that disables secret
+scanning in every repo on the machine.
+
+The script warns you if the wrapper does *not* delegate to `.git/hooks/pre-commit`,
+in which case section 5 below is the check that matters.
 
 ---
 
